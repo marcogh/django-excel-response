@@ -54,8 +54,6 @@ class ExcelResponse(HttpResponse):
                         cell_style = styles['date']
                     elif isinstance(value, datetime.time):
                         cell_style = styles['time']
-                    elif (re.compile("^[0-9]+([,][0-9]+)?$")).match(u"{}".format(value)):
-                        value = float(value.replace(',', '.'))
                     else:
                         cell_style = styles['default']
                     sheet.write(rowx, colx, value, style=cell_style)
