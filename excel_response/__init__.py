@@ -74,6 +74,6 @@ class ExcelResponse(HttpResponse):
             file_ext = 'csv'
         output.seek(0)
         super(ExcelResponse, self).__init__(content=output.getvalue(),
-                                            mimetype=mimetype)
+                                            content_type=content_type)
         self['Content-Disposition'] = 'attachment;filename="%s.%s"' % \
                                       (output_name.replace('"', '\"'), file_ext)
