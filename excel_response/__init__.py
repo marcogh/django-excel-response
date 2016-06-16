@@ -1,7 +1,7 @@
 import datetime
 import re
 
-from django.db.models.query import QuerySet, ValuesQuerySet
+from django.db.models.query import QuerySet
 from django.http import HttpResponse
 
 
@@ -11,9 +11,7 @@ class ExcelResponse(HttpResponse):
 
         # Make sure we've got the right type of data to work with
         valid_data = False
-        if isinstance(data, ValuesQuerySet):
-            data = list(data)
-        elif isinstance(data, QuerySet):
+        if isinstance(data, QuerySet):
             data = list(data.values())
         if hasattr(data, '__getitem__'):
             if isinstance(data[0], dict):
